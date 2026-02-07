@@ -1,0 +1,47 @@
+﻿@model GestionRepuestosAPI.Models.RepuestosVenta
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>RepuestosVenta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaVenta" class="control-label"></label>
+                <input asp-for="FechaVenta" class="form-control" />
+                <span asp-validation-for="FechaVenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TasaCambio" class="control-label"></label>
+                <input asp-for="TasaCambio" class="form-control" />
+                <span asp-validation-for="TasaCambio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecioVentaUnitarioEnARS" class="control-label"></label>
+                <input asp-for="PrecioVentaUnitarioEnARS" class="form-control" />
+                <span asp-validation-for="PrecioVentaUnitarioEnARS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepuestoStockId" class="control-label"></label>
+                <select asp-for="RepuestoStockId" class ="form-control" asp-items="ViewBag.RepuestoStockId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

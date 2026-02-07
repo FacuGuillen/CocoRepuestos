@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CocoRepuestos - Historial de Ventas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { background-color: #f4f7f6; }
+        .navbar-brand { font-weight: bold; color: #ffc107 !important; }
+        .card { border: none; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">🥥 CocoRepuestos</a>
+                <div class="d-flex gap-2">
+                    <a href="../index.html" class="btn btn-outline-light btn-sm">Inicio</a>
+                    <a href="stock.html" class="btn btn-outline-light btn-sm">Stock</a>
+                    <a href="ventas.html" class="btn btn-outline-light btn-sm">Ventas</a>
+                    <a href="cuentas.html" class="btn btn-outline-light btn-sm">Cuenta Corriente</a>
+                    <a href="reporte.html" class="btn btn-outline-warning btn-sm active">Reporte</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-white py-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="mb-0">🤑 Filtrar Ganancias</h5>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Reporte Mensual</span>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="filtro-mes" class="form-label text-muted small fw-bold">Período:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <small>📅</small>
+                                        </span>
+                                        <input type="month" id="filtro-mes" class="form-control border-start-0 ps-0" onchange="aplicarFiltros()">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="filtro-cliente" class="form-label text-muted small fw-bold">Cliente:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light border-end-0">
+                                            <small>👤</small>
+                                        </span>
+                                        <input type="text" id="filtro-cliente" class="form-control border-start-0 ps-0" placeholder="Ej: Dani" onkeyup="aplicarFiltros()">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 d-flex align-items-end gap-2">
+                                    <button class="btn btn-primary flex-grow-1 shadow-sm" onclick="obtenerReporte()">
+                                        🔍 Consultar
+                                    </button>
+                                    <button class="btn btn-outline-secondary shadow-sm" onclick="limpiarFiltro()" title="Limpiar">
+                                        🧹
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Descripción</th>
+                                            <th>Precio (ARS)</th>
+                                            <th>Cantidad vendidas</th>
+                                            <th>Ganancia</th>
+                                            <th>Origen</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla-ventas">
+                                        </tbody>
+                                    <tfoot id="pie-tabla-ventas">
+                                        <tr class="table-dark">
+                                            <td colspan="4" class="text-end fw-bold">GANANCIA TOTAL:</td>
+                                            <td colspan="2" class="fw-bold text-warning" id="monto-total-ganancia">$0</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4 text-center p-3">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">🚀 Acciones Rápidas</h5>
+                            <div class="d-grid gap-3">
+                                <button class="btn btn-primary p-3" onclick="location.href='stock.html'">📦 Volver al Stock</button>
+                                <button class="btn btn-success p-3" onclick="location.href='cuentas.html'">💳 Cuentas Corrientes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

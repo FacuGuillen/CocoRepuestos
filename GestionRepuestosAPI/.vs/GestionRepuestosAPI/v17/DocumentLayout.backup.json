@@ -1,0 +1,137 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|d:\\materias\\cocorepuestos-full\\gestionrepuestosapi\\gestionrepuestosapi\\migrations\\20260207173709_agregarpesokgalstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|solutionrelative:gestionrepuestosapi\\migrations\\20260207173709_agregarpesokgalstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|d:\\materias\\cocorepuestos-full\\gestionrepuestosapi\\gestionrepuestosapi\\models\\repuestosstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|solutionrelative:gestionrepuestosapi\\models\\repuestosstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|d:\\materias\\cocorepuestos-full\\gestionrepuestosapi\\gestionrepuestosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|solutionrelative:gestionrepuestosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|d:\\materias\\cocorepuestos-full\\gestionrepuestosapi\\gestionrepuestosapi\\controllers\\cuentacorrientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|solutionrelative:gestionrepuestosapi\\controllers\\cuentacorrientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|d:\\materias\\cocorepuestos-full\\gestionrepuestosapi\\gestionrepuestosapi\\models\\repuestosventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|solutionrelative:gestionrepuestosapi\\models\\repuestosventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|d:\\materias\\cocorepuestos-full\\gestionrepuestosapi\\gestionrepuestosapi\\controllers\\repuestosventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|solutionrelative:gestionrepuestosapi\\controllers\\repuestosventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|d:\\materias\\cocorepuestos-full\\gestionrepuestosapi\\gestionrepuestosapi\\controllers\\repuestosstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ED6E28F-90AB-4F81-B7B0-59B9C07BD325}|GestionRepuestosAPI\\GestionRepuestosAPI.csproj|solutionrelative:gestionrepuestosapi\\controllers\\repuestosstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20260207173709_AgregarPesoKgAlStock.cs",
+              "DocumentMoniker": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Migrations\\20260207173709_AgregarPesoKgAlStock.cs",
+              "RelativeDocumentMoniker": "GestionRepuestosAPI\\Migrations\\20260207173709_AgregarPesoKgAlStock.cs",
+              "ToolTip": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Migrations\\20260207173709_AgregarPesoKgAlStock.cs",
+              "RelativeToolTip": "GestionRepuestosAPI\\Migrations\\20260207173709_AgregarPesoKgAlStock.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-07T17:37:09.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RepuestosStock.cs",
+              "DocumentMoniker": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Models\\RepuestosStock.cs",
+              "RelativeDocumentMoniker": "GestionRepuestosAPI\\Models\\RepuestosStock.cs",
+              "ToolTip": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Models\\RepuestosStock.cs",
+              "RelativeToolTip": "GestionRepuestosAPI\\Models\\RepuestosStock.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T16:24:04.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Program.cs",
+              "RelativeDocumentMoniker": "GestionRepuestosAPI\\Program.cs",
+              "ToolTip": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Program.cs",
+              "RelativeToolTip": "GestionRepuestosAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T22:37:54.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CuentaCorrientesController.cs",
+              "DocumentMoniker": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Controllers\\CuentaCorrientesController.cs",
+              "RelativeDocumentMoniker": "GestionRepuestosAPI\\Controllers\\CuentaCorrientesController.cs",
+              "ToolTip": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Controllers\\CuentaCorrientesController.cs",
+              "RelativeToolTip": "GestionRepuestosAPI\\Controllers\\CuentaCorrientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T22:25:50.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RepuestosVenta.cs",
+              "DocumentMoniker": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Models\\RepuestosVenta.cs",
+              "RelativeDocumentMoniker": "GestionRepuestosAPI\\Models\\RepuestosVenta.cs",
+              "ToolTip": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Models\\RepuestosVenta.cs",
+              "RelativeToolTip": "GestionRepuestosAPI\\Models\\RepuestosVenta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T16:45:29.716Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RepuestosVentasController.cs",
+              "DocumentMoniker": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Controllers\\RepuestosVentasController.cs",
+              "RelativeDocumentMoniker": "GestionRepuestosAPI\\Controllers\\RepuestosVentasController.cs",
+              "ToolTip": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Controllers\\RepuestosVentasController.cs",
+              "RelativeToolTip": "GestionRepuestosAPI\\Controllers\\RepuestosVentasController.cs",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAqwMMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T15:43:04.086Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RepuestosStockController.cs",
+              "DocumentMoniker": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Controllers\\RepuestosStockController.cs",
+              "RelativeDocumentMoniker": "GestionRepuestosAPI\\Controllers\\RepuestosStockController.cs",
+              "ToolTip": "D:\\Materias\\CocoRepuestos-Full\\GestionRepuestosAPI\\GestionRepuestosAPI\\Controllers\\RepuestosStockController.cs",
+              "RelativeToolTip": "GestionRepuestosAPI\\Controllers\\RepuestosStockController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAEUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T15:32:53.307Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

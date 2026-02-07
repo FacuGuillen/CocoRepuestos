@@ -1,0 +1,113 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = GestionRepuestosAPI
+build_property.RootNamespace = GestionRepuestosAPI
+build_property.ProjectDir = D:\Materias\CocoRepuestos-Full\GestionRepuestosAPI\GestionRepuestosAPI\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Materias\CocoRepuestos-Full\GestionRepuestosAPI\GestionRepuestosAPI
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/Clientes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/Clientes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/Clientes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/Clientes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/Clientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/CuentaCorrientes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhQ29ycmllbnRlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/CuentaCorrientes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhQ29ycmllbnRlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/CuentaCorrientes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhQ29ycmllbnRlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/CuentaCorrientes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhQ29ycmllbnRlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/CuentaCorrientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhQ29ycmllbnRlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosStocks/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zU3RvY2tzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosStocks/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zU3RvY2tzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosStocks/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zU3RvY2tzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosStocks/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zU3RvY2tzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosStocks/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zU3RvY2tzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosVentas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zVmVudGFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosVentas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zVmVudGFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosVentas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zVmVudGFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosVentas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zVmVudGFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/RepuestosVentas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwdWVzdG9zVmVudGFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Materias/CocoRepuestos-Full/GestionRepuestosAPI/GestionRepuestosAPI/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
