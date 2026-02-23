@@ -14,6 +14,11 @@ async function cargarHistorialVentas() {
             const cantidad = v.cantidadVendida || 0;
             const ganancia = v.gananciaTotalVenta || 0; 
 
+            // 1. DEFINIR LA PROVINCIA
+            // Si tu API devuelve "provincia", usalo. Si es nulo, pone "Sin dato".
+            // OJO: Chequeá si viene como v.provincia o v.cliente.provincia
+            const provincia = v.provincia || ''; 
+
             const soloFecha = v.fechaVenta.split('T')[0]; 
             const partes = soloFecha.split('-'); 
             const fechaParaTabla = `${partes[2]}/${partes[1]}/${partes[0]}`;
@@ -25,7 +30,8 @@ async function cargarHistorialVentas() {
                     <td class="fw-bold">$${precio.toLocaleString('es-AR')}</td>
                     <td class="text-center">${cantidad}</td>
                     <td class="text-success">+$${ganancia.toLocaleString('es-AR')}</td>
-                    <td><span class="badge bg-info text-dark">${v.origenVenta}</span></td>
+                    
+                    <td class="text-secondary">${provincia}</td>
                 </tr>
             `;
         });

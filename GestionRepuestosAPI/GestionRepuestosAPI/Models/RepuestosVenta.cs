@@ -21,5 +21,6 @@ namespace GestionRepuestosAPI.Models
         public int ClienteId { get; set; }
         public virtual Cliente? Cliente { get; set; } // Agregamos virtual
         public string OrigenVenta { get; set; } = string.Empty; // Evita nulos
+        public string? Provincia { get; set; } // Agregale el ?
     }
 }

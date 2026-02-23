@@ -1,7 +1,5 @@
 ﻿using GestionRepuestosAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace GestionRepuestosAPI.Data
 {
@@ -11,7 +9,6 @@ namespace GestionRepuestosAPI.Data
         {
         }
 
-        // Estas son tus "tablas" en la base de datos (tus hojas de Excel)
         public DbSet<RepuestosStock> RepuestosStock { get; set; } = null!;
         public DbSet<RepuestosVenta> RepuestosVenta { get; set; } = null!;
         public DbSet<Cliente> Clientes { get; set; } = null!;
@@ -19,23 +16,24 @@ namespace GestionRepuestosAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // La relación que ya tenías de Venta con Stock
+            // Relaciones
             modelBuilder.Entity<RepuestosVenta>()
-                .HasOne(v => v.RepuestoStock)
-                .WithMany()
-                .HasForeignKey(v => v.RepuestoStockId);
+                .HasOne(v => v.RepuestoStock).WithMany().HasForeignKey(v => v.RepuestoStockId);
 
-            // NUEVA: Relación de Venta con Cliente
             modelBuilder.Entity<RepuestosVenta>()
-                .HasOne(v => v.Cliente)
-                .WithMany()
-                .HasForeignKey(v => v.ClienteId);
+                .HasOne(v => v.Cliente).WithMany().HasForeignKey(v => v.ClienteId);
 
-            // NUEVA: Relación de Cuenta Corriente con Cliente
             modelBuilder.Entity<CuentaCorriente>()
-                .HasOne(cc => cc.Cliente)
-                .WithMany()
-                .HasForeignKey(cc => cc.ClienteId);
+                .HasOne(cc => cc.Cliente).WithMany().HasForeignKey(cc => cc.ClienteId);
+
+            // PRECISIÓN: Aquí es donde evitamos que 0.055 se vuelva 0.06
+            modelBuilder.Entity<RepuestosStock>().Property(r => r.PesoKg).HasPrecision(18, 4);
+            modelBuilder.Entity<RepuestosStock>().Property(r => r.CostoUSD).HasPrecision(18, 2);
+            modelBuilder.Entity<RepuestosVenta>().Property(v => v.TasaCambio).HasPrecision(18, 4);
+            modelBuilder.Entity<RepuestosVenta>().Property(v => v.PrecioVentaUnitarioEnARS).HasPrecision(18, 2);
+            modelBuilder.Entity<CuentaCorriente>().Property(c => c.Debe).HasPrecision(18, 2);
+            modelBuilder.Entity<CuentaCorriente>().Property(c => c.Haber).HasPrecision(18, 2);
+            modelBuilder.Entity<CuentaCorriente>().Property(c => c.Saldo).HasPrecision(18, 2);
 
             base.OnModelCreating(modelBuilder);
         }

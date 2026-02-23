@@ -51,6 +51,7 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Debe")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Detalle")
@@ -61,9 +62,11 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Haber")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Saldo")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -89,6 +92,7 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("CostoUSD")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Descripcion")
@@ -100,7 +104,8 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PesoKg")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 
@@ -126,13 +131,19 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecioVentaUnitarioEnARS")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Provincia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RepuestoStockId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TasaCambio")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("cantidadVendida")
                         .HasColumnType("int");

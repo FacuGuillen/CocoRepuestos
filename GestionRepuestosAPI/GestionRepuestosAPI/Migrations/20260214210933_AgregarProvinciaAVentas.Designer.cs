@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionRepuestosAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260130150006_AgregadoClientesYCuentaCorriente")]
-    partial class AgregadoClientesYCuentaCorriente
+    [Migration("20260214210933_AgregarProvinciaAVentas")]
+    partial class AgregarProvinciaAVentas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,7 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Debe")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Detalle")
@@ -64,9 +65,11 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Haber")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Saldo")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -92,6 +95,7 @@ namespace GestionRepuestosAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("CostoUSD")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Descripcion")
@@ -101,6 +105,10 @@ namespace GestionRepuestosAPI.Migrations
                     b.Property<string>("Marca")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PesoKg")
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 
@@ -121,14 +129,27 @@ namespace GestionRepuestosAPI.Migrations
                     b.Property<DateTime>("FechaVenta")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("OrigenVenta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("PrecioVentaUnitarioEnARS")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Provincia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RepuestoStockId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TasaCambio")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<int>("cantidadVendida")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

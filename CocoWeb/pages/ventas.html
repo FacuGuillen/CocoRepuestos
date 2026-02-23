@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CocoRepuestos - Historial de Ventas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
         body { background-color: #f4f7f6; }
@@ -14,14 +15,45 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm" style="border-bottom: 2px solid #ffc107;">
             <div class="container">
-                <a class="navbar-brand" href="../index.html">🥥 CocoRepuestos</a>
-                <div class="d-flex gap-2">
-                    <a href="../index.html" class="btn btn-outline-light btn-sm">Inicio</a>
-                    <a href="stock.html" class="btn btn-outline-light btn-sm">Stock</a>
-                    <a href="ventas.html" class="btn btn-outline-warning btn-sm active">Ventas</a>
-                    <a href="cuentas.html" class="btn btn-outline-light btn-sm">Cuenta Corriente</a>
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="../index.html">
+                    <span class="bg-warning text-dark px-2 py-1 rounded me-2">🥥</span>
+                    <span class="tracking-tight">Coco<span class="text-warning">Repuestos</span></span>
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-lg-2 mt-3 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="../index.html">
+                                <i class="bi bi-house-door me-2"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="stock.html">
+                                <i class="bi bi-box-seam me-2"></i> Stock
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center active bg-warning text-dark fw-bold" href="ventas.html">
+                                <i class="bi bi-cart-check me-2"></i> Ventas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="cuentas.html">
+                                <i class="bi bi-person-lines-fill me-2"></i> Cuentas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center text-info" href="reporte.html">
+                                <i class="bi bi-graph-up-arrow me-2"></i> Reportes
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -52,7 +84,6 @@
                                             <th>Precio (ARS)</th>
                                             <th>Cantidad vendidas</th>
                                             <th>Ganancia</th>
-                                            <th>Origen</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tabla-ventas">
@@ -83,6 +114,10 @@
             </div>
         </div>
     </main>
+
+    <footer class="text-center text-muted py-4 border-top">
+        <small>&copy; 2026 CocoRepuestos - Gestión Profesional de Autopartes</small>
+    </footer>
     
     <script src="../js/ventas.js"></script>
 </body>

@@ -3,113 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CocoRepuestos - Historial de Ventas</title>
+    <title>CocoRepuestos - Reportes y Convenio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
         body { background-color: #f4f7f6; }
         .navbar-brand { font-weight: bold; color: #ffc107 !important; }
-        .card { border: none; border-radius: 10px; }
+        .card { border: none; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .table-dark { background-color: #212529; }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm" style="border-bottom: 2px solid #ffc107;">
             <div class="container">
-                <a class="navbar-brand" href="../index.html">🥥 CocoRepuestos</a>
-                <div class="d-flex gap-2">
-                    <a href="../index.html" class="btn btn-outline-light btn-sm">Inicio</a>
-                    <a href="stock.html" class="btn btn-outline-light btn-sm">Stock</a>
-                    <a href="ventas.html" class="btn btn-outline-light btn-sm">Ventas</a>
-                    <a href="cuentas.html" class="btn btn-outline-light btn-sm">Cuenta Corriente</a>
-                    <a href="reporte.html" class="btn btn-outline-warning btn-sm active">Reporte</a>
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="../index.html">
+                    <span class="bg-warning text-dark px-2 py-1 rounded me-2">🥥</span>
+                    <span class="tracking-tight">Coco<span class="text-warning">Repuestos</span></span>
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-lg-2 mt-3 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="../index.html">
+                                <i class="bi bi-house-door me-2"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="stock.html">
+                                <i class="bi bi-box-seam me-2"></i> Stock
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="ventas.html">
+                                <i class="bi bi-cart-check me-2"></i> Ventas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="cuentas.html">
+                                <i class="bi bi-person-lines-fill me-2"></i> Cuentas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center text-info" href="reporte.html">
+                                <i class="bi bi-graph-up-arrow me-2"></i> Reportes
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main class="py-4">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card shadow-sm mb-4">
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
                         <div class="card-header bg-white py-3">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="mb-0">🤑 Filtrar Ganancias</h5>
-                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Reporte Mensual</span>
-                            </div>
+                            <h5 class="mb-0">🤑 Filtrar Ganancias por Cliente</h5>
+                        </div>
+                        <div class="card-body">
                             <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="filtro-mes" class="form-label text-muted small fw-bold">Período:</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-light border-end-0">
-                                            <small>📅</small>
-                                        </span>
-                                        <input type="month" id="filtro-mes" class="form-control border-start-0 ps-0" onchange="aplicarFiltros()">
-                                    </div>
+                                <div class="col-md-5">
+                                    <label class="form-label text-muted small fw-bold">Período:</label>
+                                    <input type="month" id="filtro-mes" class="form-control" onchange="aplicarFiltros()">
                                 </div>
-
-                                <div class="col-md-4">
-                                    <label for="filtro-cliente" class="form-label text-muted small fw-bold">Cliente:</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-light border-end-0">
-                                            <small>👤</small>
-                                        </span>
-                                        <input type="text" id="filtro-cliente" class="form-control border-start-0 ps-0" placeholder="Ej: Dani" onkeyup="aplicarFiltros()">
-                                    </div>
+                                <div class="col-md-5">
+                                    <label class="form-label text-muted small fw-bold">Cliente:</label>
+                                    <input type="text" id="filtro-cliente" class="form-control" placeholder="Buscar cliente..." onkeyup="aplicarFiltros()">
                                 </div>
-
-                                <div class="col-md-4 d-flex align-items-end gap-2">
-                                    <button class="btn btn-primary flex-grow-1 shadow-sm" onclick="obtenerReporte()">
-                                        🔍 Consultar
-                                    </button>
-                                    <button class="btn btn-outline-secondary shadow-sm" onclick="limpiarFiltro()" title="Limpiar">
-                                        🧹
-                                    </button>
+                                <div class="col-md-2 d-flex align-items-end">
+                                    <button class="btn btn-primary w-100" onclick="obtenerReporte()">🔍</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Fecha</th>
-                                            <th>Descripción</th>
-                                            <th>Precio (ARS)</th>
-                                            <th>Cantidad vendidas</th>
-                                            <th>Ganancia</th>
-                                            <th>Origen</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tabla-ventas">
-                                        </tbody>
-                                    <tfoot id="pie-tabla-ventas">
-                                        <tr class="table-dark">
-                                            <td colspan="4" class="text-end fw-bold">GANANCIA TOTAL:</td>
-                                            <td colspan="2" class="fw-bold text-warning" id="monto-total-ganancia">$0</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
+                        <div class="table-responsive p-3">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Cant.</th>
+                                        <th>Ganancia</th>
+                                        <th>Jurisdicción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla-ventas">
+                                    </tbody>
+                                <tfoot>
+                                    <tr class="table-dark">
+                                        <td colspan="4" class="text-end fw-bold">GANANCIA TOTAL:</td>
+                                        <td colspan="2" class="fw-bold text-warning" id="monto-total-ganancia">$0</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card shadow-sm mb-4 text-center p-3">
+                <div class="col-lg-4">
+                    <div class="card border-warning mb-4">
+                        <div class="card-header bg-warning text-dark py-3">
+                            <h5 class="mb-0">📋 Convenio Multilateral</h5>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title mb-4">🚀 Acciones Rápidas</h5>
-                            <div class="d-grid gap-3">
-                                <button class="btn btn-primary p-3" onclick="location.href='stock.html'">📦 Volver al Stock</button>
-                                <button class="btn btn-success p-3" onclick="location.href='cuentas.html'">💳 Cuentas Corrientes</button>
+                            <p class="small text-muted">Totales de facturación por provincia para el SIFERE.</p>
+                            
+                            <button class="btn btn-warning w-100 fw-bold mb-3" onclick="abrirModalConvenio()">
+                                📊 Calcular Base Imponible
+                            </button>
+
+                            <div id="resultado-convenio" class="p-3 bg-light rounded border" style="display:none;">
+                                <div class="text-uppercase small fw-bold text-muted" id="resumen-jurisdiccion">BUENOS AIRES</div>
+                                <div class="h4 fw-bold text-primary mb-1" id="resumen-monto">$0</div>
+                                <div class="small text-muted">Operaciones: <span id="resumen-cantidad">0</span></div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-dark" onclick="location.href='stock.html'">📦 Ir al Stock</button>
+                        <button class="btn btn-outline-dark" onclick="location.href='ventas.html'">🛒 Nueva Venta</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <div class="modal fade" id="modalConvenio" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title fw-bold">📊 Calculadora SIFERE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold">📅 Período (Mes y Año):</label>
+                    <input type="month" id="mes-sifere" class="form-control" value="2026-02">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">📍 Provincia:</label>
+                    <select id="filtro-provincia-modal" class="form-select">
+                        <option value="TODAS">🌎 VER TODAS (Tabla Completa)</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="CABA">Capital Federal (CABA)</option>
+                        <option value="Catamarca">Catamarca</option>
+                        <option value="Chaco">Chaco</option>
+                        <option value="Chubut">Chubut</option>
+                        <option value="Córdoba">Córdoba</option>
+                        <option value="Corrientes">Corrientes</option>
+                        <option value="Entre Ríos">Entre Ríos</option>
+                        <option value="Formosa">Formosa</option>
+                        <option value="Jujuy">Jujuy</option>
+                        <option value="La Pampa">La Pampa</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Mendoza">Mendoza</option>
+                        <option value="Misiones">Misiones</option>
+                        <option value="Neuquén">Neuquén</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Salta">Salta</option>
+                        <option value="San Juan">San Juan</option>
+                        <option value="San Luis">San Luis</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Santa Fe">Santa Fe</option>
+                        <option value="Santiago del Estero">Santiago del Estero</option>
+                        <option value="Tierra del Fuego">Tierra del Fuego</option>
+                        <option value="Tucumán">Tucumán</option>
+                    </select>
+                </div>
+
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-dark fw-bold" onclick="calcularSifereEnModal()">
+                        🔍 Calcular Monto
+                    </button>
+                </div>
+
+                <hr>
+
+                <div id="resultado-sifere-body" style="display:none;">
+                    
+                    <div id="resultado-unico" class="text-center py-3" style="display:none;">
+                        <h6 class="text-muted text-uppercase mb-1" id="titulo-resultado-unico">TOTAL VENTAS</h6>
+                        <h2 class="fw-bold text-success display-6" id="monto-resultado-unico">$0,00</h2>
+                    </div>
+
+                    <div id="tabla-resultado-container">
+                        <p class="text-muted small mb-2">Detalle por Jurisdicción:</p>
+                        <table class="table table-sm table-striped table-hover border">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Jurisdicción</th>
+                                    <th class="text-end">Monto Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-provincias-modal">
+                                </tbody>
+                            <tfoot>
+                                <tr class="fw-bold">
+                                    <td>TOTAL MES</td>
+                                    <td class="text-end" id="total-sifere-modal">$0,00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted py-4 border-top bg-white mt-5">
+        <small>&copy; 2026 CocoRepuestos - Hurlingham, Buenos Aires</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/reporte.js"></script>
 </body>
 </html>

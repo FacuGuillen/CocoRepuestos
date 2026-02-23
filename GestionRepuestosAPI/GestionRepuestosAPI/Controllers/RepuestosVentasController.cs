@@ -27,6 +27,7 @@ namespace GestionRepuestosAPI.Controllers
         {
             var venta = await _context.RepuestosVenta
                 .Include(v => v.RepuestoStock)
+                .Include(v => v.Cliente) // <-- AGREGÁ ESTA LÍNEA
                 .ToListAsync();
             return Ok(venta);
         }
@@ -120,6 +121,32 @@ namespace GestionRepuestosAPI.Controllers
             });
         }
 
+        [HttpGet("reporte-convenio-multilateral/{anio}/{mes}")]
+        public async Task<ActionResult> GetReporteConvenio(int anio, int mes)
+        {
+            var datosConvenio = await _context.RepuestosVenta
+                .Where(v => v.FechaVenta.Year == anio && v.FechaVenta.Month == mes)
+                .GroupBy(v => v.Provincia)
+                .Select(g => new
+                {
+                    Jurisdiccion = g.Key ?? "Sin Definir",
+                    TotalIngresos = g.Sum(v => v.MontoTotalOperacion), // Este es el monto imponible
+                    CantidadOperaciones = g.Count()
+                })
+                .OrderBy(res => res.Jurisdiccion)
+                .ToListAsync();
+
+            if (!datosConvenio.Any()) return NotFound("No hay ventas registradas en este periodo.");
+
+            return Ok(new
+            {
+                Anio = anio,
+                Mes = mes,
+                DetallePorJurisdiccion = datosConvenio,
+                TotalGeneralMes = datosConvenio.Sum(d => d.TotalIngresos)
+            });
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<RepuestosVenta>> PostRepuestosVenta(RepuestosVenta repuestosVenta)
@@ -130,7 +157,7 @@ namespace GestionRepuestosAPI.Controllers
             var repuesto = await _context.RepuestosStock.FindAsync(repuestosVenta.RepuestoStockId);
             if (repuesto == null) return NotFound("El repuesto no existe.");
 
-            // 2. Validamos disponibilidad según la CANTIDAD solicitada
+            // 2. Validamos disponibilidad
             if (repuesto.CantidadEnStock < repuestosVenta.cantidadVendida)
             {
                 return BadRequest($"Stock insuficiente. Disponible: {repuesto.CantidadEnStock}");
@@ -140,26 +167,26 @@ namespace GestionRepuestosAPI.Controllers
             repuesto.CantidadEnStock -= repuestosVenta.cantidadVendida;
             _context.Entry(repuesto).State = EntityState.Modified;
 
-            // 4. Lógica de Cuenta Corriente
-            if (repuestosVenta.OrigenVenta == "Cuenta Corriente")
+            // 4. Lógica de Cuenta Corriente (SACAMOS EL IF)
+            // Ahora toda venta genera un movimiento en la cuenta del cliente seleccionado
+            var movimientoCC = new CuentaCorriente
             {
-                var movimientoCC = new CuentaCorriente
-                {
-                    ClienteId = repuestosVenta.ClienteId,
-                    Fecha = repuestosVenta.FechaVenta,
-                    Detalle = $"Venta: {repuesto.Descripcion} (Cant: {repuestosVenta.cantidadVendida})",
-                    // IMPORTANTE: La deuda es el precio unitario multiplicado por la cantidad
-                    Debe = repuestosVenta.MontoTotalOperacion,
-                    Haber = 0
-                };
-                _context.CuentasCorrientes.Add(movimientoCC);
-            }
+                ClienteId = repuestosVenta.ClienteId,
+                Fecha = repuestosVenta.FechaVenta,
+                Detalle = $"Venta: {repuesto.Descripcion} (Cant: {repuestosVenta.cantidadVendida})",
+                // Usamos el monto total que viene del JS
+                Debe = repuestosVenta.MontoTotalOperacion,
+                Haber = 0
+            };
+            _context.CuentasCorrientes.Add(movimientoCC);
 
             // 5. Guardamos la venta
             _context.RepuestosVenta.Add(repuestosVenta);
+
+            // El SaveChangesAsync guarda las TRES cosas: el stock, el movimiento de guita y la venta
             await _context.SaveChangesAsync();
 
-            // 6. Carga de referencias para la respuesta del JSON
+            // 6. Carga de referencias para la respuesta
             await _context.Entry(repuestosVenta).Reference(v => v.RepuestoStock).LoadAsync();
             await _context.Entry(repuestosVenta).Reference(v => v.Cliente).LoadAsync();
 

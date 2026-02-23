@@ -229,6 +229,11 @@
         "Name": "detalleDelPago",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "fecha",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -451,6 +456,27 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GestionRepuestosAPI.Controllers.RepuestosVentasController",
+    "Method": "GetReporteConvenio",
+    "RelativePath": "api/RepuestosVentas/reporte-convenio-multilateral/{anio}/{mes}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "anio",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "mes",
         "Type": "System.Int32",
         "IsRequired": true
       }

@@ -47,9 +47,11 @@ function abrirModalVenta(id, desc, costo) {
     document.getElementById('v_costoUSD').innerText = costo;
     document.getElementById('tituloVenta').innerText = "Vender: " + desc;
 
-    // Seteamos la fecha de hoy automáticamente al abrir
     const hoy = new Date().toISOString().split('T')[0];
     document.getElementById('v_fecha').value = hoy;
+
+    // ESTA LÍNEA ES LA QUE CARGA A DANI Y A LOS DEMÁS
+    cargarClientesEnSelect(); 
     
     let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalVenta'));
     modal.show();
@@ -150,16 +152,27 @@ async function confirmarEliminacion() {
 async function guardarCambioStock() {
     const id = document.getElementById('s_repuestoId').value;
     const nuevaCantidad = parseInt(document.getElementById('s_cantidad_input').value);
+    
+    // Usamos parseFloat para permitir decimales en el precio
+    const nuevoCostoUSD = parseFloat(document.getElementById('s_costoUSD').value);
 
-    if (isNaN(nuevaCantidad)) return alert("Ingresá un número válido");
+    // Validación simple
+    if (isNaN(nuevaCantidad) || isNaN(nuevoCostoUSD)) {
+        return alert("⚠️ Por favor, ingresá valores numéricos válidos en ambos campos.");
+    }
 
     try {
+        // Buscamos el repuesto actual
         const getRes = await fetch(`${API_URL}/RepuestosStock/${id}`);
         if (!getRes.ok) throw new Error("No se pudo obtener el producto");
         
         const producto = await getRes.json();
+        
+        // Actualizamos los valores
         producto.cantidadEnStock = nuevaCantidad;
+        producto.costoUSD = nuevoCostoUSD;
 
+        // Mandamos el objeto actualizado a la API
         const putRes = await fetch(`${API_URL}/RepuestosStock/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -167,16 +180,19 @@ async function guardarCambioStock() {
         });
 
         if (putRes.ok) {
+            // Cerramos el modal
             const modalElement = document.getElementById('modalStock');
-            bootstrap.Modal.getInstance(modalElement).hide();
-            alert("✅ Stock actualizado en CocoRepuestos.");
-            cargarStock(); 
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+            
+            alert("✅ Stock y Costo actualizados correctamente.");
+            cargarStock(); // Refrescamos la lista de la pantalla
         } else {
-            alert("El servidor rechazó la actualización (Error 400/500).");
+            alert("❌ Hubo un error al guardar en la base de datos.");
         }
     } catch (error) {
         console.error(error);
-        alert("Fallo la comunicación con la API.");
+        alert("🚨 Error de conexión con el servidor.");
     }
 }
 
@@ -190,40 +206,76 @@ function filtrarStock() {
 }
 
 async function confirmarVenta() {
+    // 1. CAPTURA DE DATOS (IDs del nuevo modal)
     const id = document.getElementById('v_repuestoId').value;
-    const precioFinal = parseFloat(document.getElementById('v_precio').value);
-    const origen = document.getElementById('v_origen').value;
+    const precioTotal = parseFloat(document.getElementById('v_precio').value);
     const fechaElegida = document.getElementById('v_fecha').value;
+    const cantidad = parseInt(document.getElementById('v_cantidad').value) || 1;
+    const tasa = parseFloat(document.getElementById('v_tasa')?.value) || 1; 
+    const idCliente = document.getElementById('v_cliente').value; // El select dinámico
+    const provinciaElegida = document.getElementById('v_provincia').value;
 
-    if (!precioFinal) return alert("Por favor, ingresá el precio cobrado.");
+    // 2. VALIDACIONES
+    if (!precioTotal) return alert("Por favor, ingresá el precio cobrado.");
     if (!fechaElegida) return alert("La fecha es obligatoria.");
+    if (!idCliente) return alert("Por favor, seleccioná un cliente.");
+    if (!provinciaElegida) return alert("Por favor, seleccioná una provincia.");
 
-
+    // 3. OBJETO VENTA (Limpio de errores de referencia)
     const venta = {
-        repuestoId: parseInt(id),
-        precioARS: precioFinal,
-        origen: origen,
-        fecha: new Date(fechaElegida).toISOString()
-    };
+    fechaVenta: new Date(fechaElegida).toISOString(), 
+    tasaCambio: tasa,
+    // Mandamos el precio unitario tal cual lo escribiste
+    precioVentaUnitarioEnARS: precioTotal, 
+    repuestoStockId: parseInt(id), 
+    clienteId: parseInt(idCliente), 
+    cantidadVendida: cantidad,
+    provincia: provinciaElegida
+};
 
     try {
-        const response = await fetch(`${API_URL}/Ventas`, {
+        const response = await fetch(`${API_URL}/RepuestosVentas`, { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(venta)
         });
 
         if (response.ok) {
-            alert("✅ Venta registrada y stock descontado.");
+            alert("✅ Venta registrada con éxito en CocoRepuestos.");
             const modalElement = document.getElementById('modalVenta');
             bootstrap.Modal.getInstance(modalElement).hide();
-            cargarStock();
+            cargarStock(); // Refrescamos la tabla para ver el nuevo stock
         } else {
-            alert("Error al registrar: verifique si hay stock suficiente.");
+            const errorDetalle = await response.text();
+            alert("Error al registrar: " + errorDetalle);
         }
     } catch (error) {
         console.error("Error:", error);
         alert("Error de conexión con la API.");
+    }
+}
+
+async function cargarClientesEnSelect() {
+    const select = document.getElementById('v_cliente');
+    try {
+        // Asegurate que el puerto sea 7095 y la ruta sea /api/Clientes
+        const response = await fetch('https://localhost:7095/api/Clientes');
+        
+        if (!response.ok) throw new Error("Fallo en la respuesta");
+        
+        const clientes = await response.json();
+        console.log("Clientes cargados:", clientes); // Esto te ayuda a ver si llega Dani
+
+        select.innerHTML = '<option value="">-- Seleccione un Cliente --</option>';
+        clientes.forEach(c => {
+            const option = document.createElement('option');
+            option.value = c.id; 
+            option.text = c.nombre; 
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar clientes:", error);
+        select.innerHTML = '<option value="">Error al cargar clientes</option>';
     }
 }
 

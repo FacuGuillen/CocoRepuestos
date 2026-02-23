@@ -5,103 +5,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CocoRepuestos - Cuentas Corrientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .card-saldo { transition: transform 0.2s; }
+        .card-saldo:hover { transform: translateY(-5px); }
+        .table-movimientos { font-size: 0.95rem; }
+    </style>
 </head>
-
 <body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm" style="border-bottom: 2px solid #ffc107;">
             <div class="container">
-                <a class="navbar-brand" href="../index.html">🥥 CocoRepuestos</a>
-                <div class="d-flex gap-2">
-                    <a href="../index.html" class="btn btn-outline-light btn-sm">Inicio</a>
-                    <a href="stock.html" class="btn btn-outline-light btn-sm">Stock</a>
-                    <a href="ventas.html" class="btn btn-outline-light btn-sm">Ventas</a>
-                    <a href="cuentas.html" class="btn btn-outline-warning btn-sm active">Cuenta Corriente</a>
-                </div>
-            </div>
-        </nav>  
-    </header> 
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="../index.html">
+                    <span class="bg-warning text-dark px-2 py-1 rounded me-2">🥥</span>
+                    <span class="tracking-tight">Coco<span class="text-warning">Repuestos</span></span>
+                </a>
 
-    <main>
-        <div class="container mt-4">
-            <h2 class="mb-4">📋 Estado de Cuenta Cliente</h2>
-
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label for="buscar-cliente" class="col-form-label fw-bold">Buscar Cliente:</label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" id="buscar-cliente" class="form-control" placeholder="Ej: Dani">
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-primary" onclick="obtenerSaldoYMovimientos()">Consultar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-4" id="resumen-saldos" style="display: none;">
-                <div class="col-md-4">
-                    <div class="card border-primary shadow-sm h-100">
-                        <div class="card-body text-center">
-                            <h6 class="text-muted">Total Comprado</h6>
-                            <h3 class="text-primary" id="total-deuda">$0</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-success shadow-sm h-100">
-                        <div class="card-body text-center">
-                            <h6 class="text-muted">Total Pagado</h6>
-                            <h3 class="text-success" id="total-pagado">$0</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-danger shadow-sm h-100">
-                        <div class="card-body text-center">
-                            <h6 class="text-muted">Saldo Pendiente</h6>
-                            <h3 class="text-danger" id="saldo-pendiente">$0</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-end mb-3">
-                <button class="btn btn-success shadow-sm" onclick="prepararPagoGeneral()">
-                    💵 Registrar Entrega de Dinero
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
 
-            <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white">
-                    Historial de Movimientos - <span id="nombre-cliente-titulo">Seleccione un cliente</span>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-lg-2 mt-3 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="../index.html">
+                                <i class="bi bi-house-door me-2"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="stock.html">
+                                <i class="bi bi-box-seam me-2"></i> Stock
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center" href="ventas.html">
+                                <i class="bi bi-cart-check me-2"></i> Ventas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center active bg-warning text-dark fw-bold" href="cuentas.html">
+                                <i class="bi bi-person-lines-fill me-2"></i> Cuentas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-pill d-flex align-items-center text-info" href="reporte.html">
+                                <i class="bi bi-graph-up-arrow me-2"></i> Reportes
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="table-secondary">
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Detalle</th>
-                                <th class="text-danger">Debe (+)</th>
-                                <th class="text-success">Haber (-)</th>
-                                <th class="fw-bold">Saldo Acum.</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-movimientos">
-                            <tr>
-                                <td colspan="5" class="text-center text-muted">Ingrese un nombre para ver los movimientos</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">📋 Cuentas Corrientes</h2>
+            <div class="d-flex gap-2">
+                <button class="btn btn-warning shadow-sm" onclick="abrirModalCliente()">👤 Nuevo Cliente</button>
+                <button class="btn btn-success shadow-sm" onclick="abrirModalPago()">💵 Registrar Pago</button>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4 border-0">
+            <div class="card-body bg-white rounded">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-8">
+                        <label class="form-label fw-bold text-muted small">BUSCAR CLIENTE POR NOMBRE</label>
+                        <input type="text" id="buscar-cliente" class="form-control form-control-lg" placeholder="Ej: Facu o Dani...">
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary btn-lg w-100 shadow-sm" onclick="obtenerSaldoYMovimientos()">
+                            🔍 Consultar Estado
+                        </button>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4" id="resumen-saldos" style="display: none;">
+            <div class="col-md-4">
+                <div class="card card-saldo border-0 shadow-sm border-start border-primary border-4">
+                    <div class="card-body">
+                        <h6 class="text-muted small fw-bold">TOTAL COMPRADO (DEBE)</h6>
+                        <h3 class="text-primary mb-0" id="total-deuda">$0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-saldo border-0 shadow-sm border-start border-success border-4">
+                    <div class="card-body">
+                        <h6 class="text-muted small fw-bold">TOTAL PAGADO (HABER)</h6>
+                        <h3 class="text-success mb-0" id="total-pagado">$0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-saldo border-0 shadow-sm border-start border-danger border-4">
+                    <div class="card-body">
+                        <h6 class="text-muted small fw-bold">SALDO PENDIENTE</h6>
+                        <h3 class="text-danger mb-0" id="saldo-pendiente">$0</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white py-3 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Historial: <span id="nombre-cliente-titulo" class="text-warning">Seleccione un cliente</span></h5>
+                <button class="btn btn-sm btn-outline-light" onclick="location.reload()">🔄 Limpiar</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 table-movimientos">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 15%;">Fecha</th>
+                            <th style="width: 40%;">Detalle del Movimiento</th>
+                            <th style="width: 15%;" class="text-danger">Debe (+)</th>
+                            <th style="width: 15%;" class="text-success">Haber (-)</th>
+                            <th style="width: 15%;">Saldo Acum.</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-movimientos">
+                        <tr>
+                            <td colspan="5" class="text-center py-5 text-muted">
+                                <small>Ingrese el nombre del cliente arriba para ver su historial contable.</small>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
 
+    <div class="modal fade" id="modalCliente" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title fw-bold">👤 Nuevo Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <input type="text" id="c_nombre" class="form-control mb-3" placeholder="Nombre completo">
+                    <input type="text" id="c_telefono" class="form-control mb-3" placeholder="WhatsApp">
+                    <input type="email" id="c_email" class="form-control" placeholder="Email (opcional)">
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-primary w-100" onclick="guardarCliente()">Guardar Cliente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPago" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title fw-bold">💵 Registrar Pago</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">MONTO EN PESOS</label>
+                        <input type="number" id="p_monto" class="form-control form-control-lg text-success" placeholder="0.00">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">FECHA</label>
+                        <input type="date" id="p_fecha" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">COMENTARIO</label>
+                        <input type="text" id="p_detalle" class="form-control" placeholder="Ej: Pago seña sensor">
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-success w-100" onclick="guardarPago()">Confirmar Entrega</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted py-4 border-top">
+        <small>&copy; 2026 CocoRepuestos - Gestión Profesional de Autopartes</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/cuentas.js"></script>
 </body>
 </html>

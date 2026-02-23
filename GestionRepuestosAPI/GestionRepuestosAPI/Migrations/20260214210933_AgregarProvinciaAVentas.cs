@@ -5,13 +5,13 @@
 namespace GestionRepuestosAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class EstructuraVentasFinal : Migration
+    public partial class AgregarProvinciaAVentas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "OrigenVenta",
+                name: "Provincia",
                 table: "RepuestosVenta",
                 type: "nvarchar(max)",
                 nullable: false,
@@ -22,7 +22,7 @@ namespace GestionRepuestosAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "OrigenVenta",
+                name: "Provincia",
                 table: "RepuestosVenta");
         }
     }

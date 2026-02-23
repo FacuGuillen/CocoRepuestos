@@ -399,6 +399,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "fecha",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
           }
         ],
         "responses": {
@@ -823,6 +831,38 @@
           }
         }
       }
+    },
+    "/api/RepuestosVentas/reporte-convenio-multilateral/{anio}/{mes}": {
+      "get": {
+        "tags": [
+          "RepuestosVentas"
+        ],
+        "parameters": [
+          {
+            "name": "anio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "mes",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -970,6 +1010,10 @@
             "$ref": "#/components/schemas/Cliente"
           },
           "origenVenta": {
+            "type": "string",
+            "nullable": true
+          },
+          "provincia": {
             "type": "string",
             "nullable": true
           }

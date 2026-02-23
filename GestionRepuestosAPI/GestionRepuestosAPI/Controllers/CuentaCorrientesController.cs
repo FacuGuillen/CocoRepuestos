@@ -58,24 +58,26 @@ namespace GestionRepuestosAPI.Controllers
         [HttpGet("saldo/{nombreDelCliente}")]
         public async Task<ActionResult> GetSaldoCliente(string nombreDelCliente)
         {
-            // 1. Buscamos todos los movimientos del cliente (ej. Dani)
-            var movimientos = await _context.CuentasCorrientes
-                .Include(cc => cc.Cliente)
-                .Where(cc => cc.Cliente.Nombre.ToLower().Contains(nombreDelCliente.ToLower()))
-                .OrderBy(cc => cc.Fecha) // Los ordenamos por fecha para calcular el saldo acumulado
-                .ToListAsync();
+            // 1. Buscamos al cliente primero para asegurar que existe
+            var cliente = await _context.Clientes
+                .FirstOrDefaultAsync(c => c.Nombre.ToLower().Trim() == nombreDelCliente.ToLower().Trim());
 
-            if (!movimientos.Any())
+            if (cliente == null)
             {
-                return NotFound($"No se encontró ningún movimiento para '{nombreDelCliente}'.");
+                return NotFound($"El cliente '{nombreDelCliente}' no existe en CocoRepuestos.");
             }
 
-            // 2. Calculamos los totales para las tarjetas superiores
+            // 2. Traemos sus movimientos usando el ID (que es infalible)
+            var movimientos = await _context.CuentasCorrientes
+                .Where(cc => cc.ClienteId == cliente.Id)
+                .OrderBy(cc => cc.Fecha)
+                .ToListAsync();
+
+            // 3. Procesamos los datos para el JS
             var totalDebe = movimientos.Sum(cc => cc.Debe);
             var totalHaber = movimientos.Sum(cc => cc.Haber);
-
-            // 3. Preparamos la lista para la tabla calculando el saldo acumulado fila por fila
             var saldoAcumulado = 0m;
+
             var movimientosConSaldo = movimientos.Select(m => {
                 saldoAcumulado += (m.Debe - m.Haber);
                 return new
@@ -85,22 +87,18 @@ namespace GestionRepuestosAPI.Controllers
                     m.Detalle,
                     m.Debe,
                     m.Haber,
-                    m.ClienteId,
-                    ClienteNombre = m.Cliente.Nombre,
-                    SaldoAcumulado = saldoAcumulado // Este es el valor que va a la columna "Saldo Acum."
+                    SaldoAcumulado = saldoAcumulado
                 };
             }).ToList();
 
-            var nombreReal = movimientos.First().Cliente.Nombre;
-
-            // 4. Enviamos TODO al Frontend (Tarjetas + Tabla)
             return Ok(new
             {
-                Cliente = nombreReal,
+                ClienteId = cliente.Id,
+                Cliente = cliente.Nombre,
                 TotalDeudaOriginal = totalDebe,
                 TotalPagadoHastaHoy = totalHaber,
                 SaldoPendiente = totalDebe - totalHaber,
-                Movimientos = movimientosConSaldo // <--- Esto es lo que lee el forEach de tu JS
+                Movimientos = movimientosConSaldo
             });
         }
 
@@ -124,7 +122,7 @@ namespace GestionRepuestosAPI.Controllers
         }
 
         [HttpPost("registrar-pago")]
-        public async Task<ActionResult> RegistrarPagoCuentaCorriente(int clienteId, decimal monto, string detalleDelPago)
+        public async Task<ActionResult> RegistrarPagoCuentaCorriente(int clienteId, decimal monto, string detalleDelPago, DateTime? fecha)
         {
             // 1. Verificamos que el cliente exista
             var cliente = await _context.Clientes.FindAsync(clienteId);
@@ -133,7 +131,7 @@ namespace GestionRepuestosAPI.Controllers
             var pago = new CuentaCorriente
             {
                 ClienteId = clienteId,
-                Fecha = DateTime.Now,
+                Fecha = fecha ?? DateTime.Now,
                 Detalle = $"Pago recibido: {detalleDelPago}",
                 Debe = 0,
                 Haber = monto

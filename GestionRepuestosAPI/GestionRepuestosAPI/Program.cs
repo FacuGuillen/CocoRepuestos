@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using GestionRepuestosAPI.Data;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,23 +20,29 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddControllers();
+// 3. CONFIGURACIÓN DE CONTROLADORES Y JSON (Aquí está el cambio)
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Esto ayuda a que el JSON mantenga la precisión de los números decimales
+        options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals;
+        // Evita ciclos de referencia si en el futuro agregás relaciones complejas
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// FORZAMOS SWAGGER (Sin el IF de IsDevelopment)
+// FORZAMOS SWAGGER
 app.UseSwagger();
 app.UseSwaggerUI(c => {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "CocoRepuestos API V1");
-    c.RoutePrefix = "swagger"; // Para entrar directo con /swagger
+    c.RoutePrefix = "swagger";
 });
 
 app.UseCors("PermitirTodo");
-
-// Comentamos la redirección HTTPS para evitar errores en localhost:5000
-// app.UseHttpsRedirection(); 
 
 app.UseAuthorization();
 app.MapControllers();
